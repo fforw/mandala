@@ -149,9 +149,6 @@ void main(void) {
     float hw = width * 0.5;
     float hh = width * 0.5;
 
-    float diagonal = sqrt(hw*hw+hh*hh);
-
-
     float size = min(width, height);
 
     float xOff = (sin(time * 0.0004) + sin(time * 0.0003)) * size / 6.0;
@@ -180,16 +177,16 @@ void main(void) {
     a2 = a2 < 0.5 ? a2 * 2.0 : 1.0 - (a2 - 0.5) * 2.0;
 
     //d = d < 1.0 ? d: 1.0 - (d - 1.0);
-    float n = snoise(vec3(a2 * 0.6, pow(d,0.4) * 4.0 - time * 0.0002, time * 0.00007));
+    float n = snoise(vec3(a2 * 0.6, sqrt(d) * 4.0 - time * 0.0002, time * 0.00007));
 
     vec3 color = hsl2rgb(
         fract(time * 0.00005 + (sin(a * pi) * 0.25 + snoise(vec3(a2 * 0.9,  d * 2.5,time * 0.0004)) * seventh) + (n < 0.0 ? 0.0 : third)),
         0.5 + cos(a*tau + time * 0.001) * 0.4,
-        0.5
+        n < 0.0 ? 0.575 + sin( d + time * 0.0002) * 0.175 : 0.575 + cos( d + time * 0.0002) * 0.175
     );
 
 
-    float darken = pow(d, 2.0) * 0.02;
+    float darken = d * d * 0.02;
 
     gl_FragColor = vec4(mod(n, 0.5) < 0.4 - darken /*&& a2 > 0.01 && a2 < 0.99 && mod(d, third) < third * 0.98*/ ? color: black, 1);
 }
