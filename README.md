@@ -1,6 +1,6 @@
-# TV shader
+# Mandala Shader
 
-Oldschool test picture with color noise and distortion.
+Renders a hue variation mandala with rotational mirror symmetry
 
 
-[Live demo](https://fforw.github.io/tvstatic/)
+[Live demo](https://fforw.github.io/mandala/)
