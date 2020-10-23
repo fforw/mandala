@@ -183,7 +183,7 @@ void main(void) {
     float n = snoise(vec3(a2 * 0.6, pow(d,0.4) * 4.0 - time * 0.0002, time * 0.00007));
 
     vec3 color = hsl2rgb(
-        fract(time * 0.00005 + (sin(a * pi) * 0.25 + snoise(vec3(a2 * 0.75,  d * 5.0,time * 0.0004)) * seventh) + (n < 0.0 ? 0.0 : third)),
+        fract(time * 0.00005 + (sin(a * pi) * 0.25 + snoise(vec3(a2 * 0.9,  d * 2.5,time * 0.0004)) * seventh) + (n < 0.0 ? 0.0 : third)),
         0.5 + cos(a*tau + time * 0.001) * 0.4,
         0.5
     );
